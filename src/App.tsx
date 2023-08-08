@@ -5,15 +5,16 @@ import { setName, setToken } from './store/slices/userSlice';
 
 function App() {
   const dispatch = useDispatch();
-  const [getUsers, { data }] = useLazyGetUserQuery();
+  const [getUsers, {}] = useLazyGetUserQuery();
 
   const handleLogin = async () => {
 
     dispatch(setName("Shourov"));
     dispatch(setToken("astra"));
 
-    await getUsers("");
-    console.log(data);
+    getUsers("").then(({data}) => {
+      console.log(data)
+    });
   }
 
   return (

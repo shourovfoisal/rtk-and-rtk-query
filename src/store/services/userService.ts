@@ -14,5 +14,5 @@ export const userService = createApi({
         }
     }),
     tagTypes: ["user"],
-    endpoints: (builder) => ({})
+    endpoints: () => ({})
 })
