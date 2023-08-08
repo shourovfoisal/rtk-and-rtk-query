@@ -1,31 +1,23 @@
-import { useDispatch } from 'react-redux';
+import { useState } from 'react'
 import './App.css'
-import { useLazyGetUserQuery, userApi } from './store/api/userApi';
-import { setName, setToken } from './store/slices/userSlice';
+import { Component1 } from './components/Component1'
+import { Component2 } from './components/Component2'
 
 function App() {
-  const dispatch = useDispatch();
-  const [getUsers, {}] = useLazyGetUserQuery();
-
-  const handleLogin = async () => {
-
-    dispatch(setName("Shourov"));
-    dispatch(setToken("astra"));
-
-    getUsers("").then(({data}) => {
-      console.log(data)
-    });
-  }
+  
+  const [one, setOne] = useState(true);
 
   return (
-    <div className='card' style={{ backgroundColor: "#ddd" }}>
-      <div>
-        <button onClick={() => { userApi.util.resetApiState() }}>Reset Api State Cache</button>
+    <>
+      <div className='card' style={{ backgroundColor: "#ddd" }}>
+        <button onClick={() => setOne(prev => !prev)}>Switch Component</button>
       </div>
-      <div style={{ marginTop: "1.5rem" }}>
-        <button onClick={handleLogin}>Fetch Users</button>
+
+      <div className='card' style={{ backgroundColor: "#ddd", marginTop: "1rem" }}>
+        { one ? <Component1 /> : <Component2 /> }
       </div>
-    </div>
+    </>
+    
   )
 }
 
