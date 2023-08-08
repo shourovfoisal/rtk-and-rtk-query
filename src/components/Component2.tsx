@@ -20,6 +20,11 @@ export const Component2 = () => {
         });
     }
 
+    const handleClear = () => {
+        console.log("Clearing cache from component 2.")
+        userApi.util.resetApiState()
+    }
+
     return (
         <Layout2>
             <h2>Component2</h2>
@@ -27,7 +32,7 @@ export const Component2 = () => {
                 <button onClick={handleLogin}>Fetch Users</button>
             </div>
             <div style={{ marginTop: "1.5rem" }}>
-                <button onClick={() => { userApi.util.resetApiState() }}>Reset Api State Cache</button>
+                <button onClick={handleClear}>Reset Api State Cache</button>
             </div>
         </Layout2>
     )

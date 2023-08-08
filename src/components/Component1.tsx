@@ -15,9 +15,22 @@ export const Component1 = () => {
         dispatch(setName("Shourov"));
         dispatch(setToken("astra"));
 
-        getUsers("").then(({data}) => {
-        console.log(data)
-        });
+        // getUsers("").then(({data}) => {
+        // console.log(data)
+        // });
+
+        try {
+            const {data} = await getUsers("")
+            console.log(data)
+        } catch (error) {
+            throw error
+        }
+        
+    }
+
+    const handleClear = () => {
+        console.log("Clearing cache from component 1.")
+        userApi.util.resetApiState()
     }
 
     return (
@@ -27,7 +40,7 @@ export const Component1 = () => {
                 <button onClick={handleLogin}>Fetch Users</button>
             </div>
             <div style={{ marginTop: "1.5rem" }}>
-                <button onClick={() => { userApi.util.resetApiState() }}>Reset Api State Cache</button>
+                <button onClick={handleClear}>Reset Api State Cache</button>
             </div>
         </Layout1>
     )
