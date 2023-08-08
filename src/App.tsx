@@ -1,34 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useDispatch } from 'react-redux';
 import './App.css'
+import { useLazyGetUserQuery, userApi } from './store/api/userApi';
+import { setName, setToken } from './store/slices/userSlice';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch();
+  const [getUsers, { data }] = useLazyGetUserQuery();
+
+  const handleLogin = async () => {
+
+    dispatch(setName("Shourov"));
+    dispatch(setToken("astra"));
+
+    await getUsers("");
+    console.log(data);
+  }
 
   return (
-    <>
+    <div className='card' style={{ backgroundColor: "#ddd" }}>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <button onClick={() => { userApi.util.resetApiState() }}>Reset Api State Cache</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div style={{ marginTop: "1.5rem" }}>
+        <button onClick={handleLogin}>Fetch Users</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 

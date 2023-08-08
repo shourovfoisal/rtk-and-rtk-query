@@ -1,0 +1,18 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name":"shourov",
+            "age": 29,
+            "address": "mirpur, dhaka",
+            "password": "123"
+        },
+        {
+            "id": 2,
+            "name":"foisal",
+            "age": 29,
+            "address": "rupnagar, dhaka",
+            "password": "246"
+        }
+    ]
+}
