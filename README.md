@@ -10,5 +10,13 @@ Testing rtk with rtk query
 
 <br />
 
+* Try switching the components and fetching data afterwards
+* The request header will change accordingly
+* But the attempt to wrap each layout with different
+* Provider component resulted in failure, since the components aren't
+* Getting the store context.
+
+<br />
+
 * To run the frontend `npm run dev`
 * To run the backend `npm run server`
